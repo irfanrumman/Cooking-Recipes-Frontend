@@ -2,6 +2,7 @@ import { LucideProps } from "lucide-react";
 import { ForwardRefExoticComponent, RefAttributes } from "react";
 
 export type IPostStatus = "DRAFT" | "PUBLISHED" | "ARCHIVED";
+export type User = "USER" | "ADMIN" | "AUTHOR";
 
 export type IAuthor = {
     id: string;
