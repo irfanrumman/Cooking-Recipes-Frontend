@@ -15,16 +15,11 @@ const LoginForm = () => {
     const redirectTo = searchParams.get("redirectTo") ?? ""
     const [state, action, pending] = useActionState(loginAction.bind(null, redirectTo), false)
     
-    // const router = useRouter()
+
 
 
     useEffect(()=> {
         if(!state) return;
-
-        // if(state.success){
-        //     toast.success(state.message || "Login Successful");
-        //     // router.push("/dashboard")
-        // }
 
         if(!state.success){
             toast.error(state.message || "Login failed");
@@ -39,7 +34,7 @@ const LoginForm = () => {
             <Input name="password" type="password" placeholder="Enter Your Password" required />
             <Button type="submit">
                 {
-                    pending ? "Submitting..." : "Login"
+                    pending ? "Submitting..." : "Sign In"
                 }
             </Button>
         </Card>
