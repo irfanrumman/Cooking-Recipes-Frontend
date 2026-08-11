@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { NavbarProps } from "@/lib/types";
 import { logout } from "@/service/logout";
+import { ThemeToggle } from "./theme-toggle";
 import {
   LayoutDashboard,
   LogOut,
@@ -27,10 +28,10 @@ import { Button } from "../ui/button";
 // Navigation items configuration
 const navItems = [
   { label: "Home", href: "/" },
+    { label: "Recipes", href: "/recipes" },
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Contact", href: "/contact" },
-  { label: "News", href: "/news" },
   { label: "Premium", href: "/premium" },
 ];
 
@@ -67,7 +68,7 @@ export function Navbar({ user }: NavbarProps) {
   };
 
   return (
-    <nav className="border-b border-border relative">
+    <nav className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo */}
@@ -90,8 +91,10 @@ export function Navbar({ user }: NavbarProps) {
             ))}
           </div>
 
-          {/* Right side: User area (desktop) + Hamburger (mobile) */}
+          {/* Right side: Theme toggle + User area (desktop) + Hamburger (mobile) */}
           <div className="flex items-center gap-2">
+            <ThemeToggle />
+
             {/* User Dropdown / Auth Buttons - hidden on mobile, shown from sm up */}
             <div className="hidden sm:flex items-center gap-2 sm:gap-3">
               {user.success ? (

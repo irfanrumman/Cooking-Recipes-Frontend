@@ -24,4 +24,4 @@ const DashboardLayout = async (
   );
 };
 
-export default DashboardLayout
+export default DashboardLayout;
