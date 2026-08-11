@@ -14,9 +14,9 @@ const PublicGroupLayout = async (
     <div className="flex min-h-full flex-col">
       <Navbar user={user}/>
       <main className="flex-1">{children}</main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }
 
-export default PublicGroupLayout
+export default PublicGroupLayout;

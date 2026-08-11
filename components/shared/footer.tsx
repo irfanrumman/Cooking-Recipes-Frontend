@@ -1,19 +1,17 @@
 import Link from "next/link";
+import { Suspense } from "react";
+import { CurrentYear } from "./current-year";
 import {
-  Camera,
   ChefHat,
-  Globe,
   Mail,
   MapPin,
   MessageCircle,
-  Phone,
-  Video,
 } from "lucide-react";
 
 const quickLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Recipes", href: "/news" },
+  { label: "Recipes", href: "/recipes" },
   { label: "Premium", href: "/premium" },
 ];
 
@@ -31,16 +29,16 @@ const categoryLinks = [
   { label: "Vegan", href: "/news?searchTerm=Vegan" },
 ];
 
-const socialLinks = [
-  { label: "Facebook", icon: Globe, href: "#" },
-  { label: "Instagram", icon: Camera, href: "#" },
-  { label: "Twitter", icon: MessageCircle, href: "#" },
-  { label: "YouTube", icon: Video, href: "#" },
-];
+// const socialLinks = [
+//   { label: "Facebook", icon: Globe, href: "#" },
+//   { label: "Instagram", icon: Camera, href: "#" },
+//   { label: "Twitter", icon: MessageCircle, href: "#" },
+//   { label: "YouTube", icon: Video, href: "#" },
+// ];
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-secondary">
+    <footer className="relative z-20 border-t border-border bg-secondary">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5">
           <div className="space-y-4 lg:col-span-2">
@@ -54,7 +52,7 @@ export function Footer() {
               Discover, cook, and share recipes with a growing community of
               home cooks and chefs from around the world.
             </p>
-            <div className="flex items-center gap-2">
+            {/* <div className="flex items-center gap-2">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
                 return (
@@ -68,7 +66,7 @@ export function Footer() {
                   </Link>
                 );
               })}
-            </div>
+            </div> */}
           </div>
 
           <div className="space-y-3">
@@ -116,10 +114,10 @@ export function Footer() {
             <Mail className="size-4 text-primary" />
             hello@cookingrecipes.com
           </span>
-          <span className="flex items-center gap-2">
+          {/* <span className="flex items-center gap-2">
             <Phone className="size-4 text-primary" />
             +1 (555) 123-4567
-          </span>
+          </span> */}
           <span className="flex items-center gap-2">
             <MapPin className="size-4 text-primary" />
             123 Kitchen Lane, Flavor Town
@@ -127,7 +125,10 @@ export function Footer() {
         </div>
 
         <div className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row">
-          <p>&copy; {new Date().getFullYear()} Cooking Recipes. All rights reserved.</p>
+          <p>
+            &copy; <Suspense fallback={null}><CurrentYear /></Suspense> Cooking
+            Recipes. All rights reserved.
+          </p>
           <div className="flex items-center gap-4">
             <Link href="#" className="hover:text-primary">
               Privacy Policy

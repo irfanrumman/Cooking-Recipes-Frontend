@@ -1,3 +1,4 @@
+import { Footer } from "@/components/shared/footer";
 import { Navbar } from "@/components/shared/navbar";
 import { AuthProvider } from "@/lib/authContext";
 import { getMe } from "@/service/getMe";
@@ -11,6 +12,7 @@ const AuthGroupLayout = async (
     <AuthProvider>
     <Navbar user={user}/>
     {children}
+    {/* <Footer /> */}
     </AuthProvider>
   </div>;
 };

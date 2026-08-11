@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { NavbarProps } from "@/lib/types";
 import { logout } from "@/service/logout";
-import { ThemeToggle } from "./theme-toggle";
+import { ThemeToggle } from "@/components/shared/theme-toggle";
 import {
   LayoutDashboard,
   LogOut,
@@ -28,10 +28,10 @@ import { Button } from "../ui/button";
 // Navigation items configuration
 const navItems = [
   { label: "Home", href: "/" },
-    { label: "Recipes", href: "/recipes" },
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Contact", href: "/contact" },
+  { label: "News", href: "/news" },
   { label: "Premium", href: "/premium" },
 ];
 
@@ -39,7 +39,7 @@ const navItems = [
 const userMenuItems = [
   { label: "Dashboard", icon: LayoutDashboard, action: "dashboard" },
   { label: "Profile", icon: User, action: "profile" },
-  { label: "Settings", icon: Settings, action: "settings" },
+  // { label: "Settings", icon: Settings, action: "settings" },
 ];
 
 export function Navbar({ user }: NavbarProps) {
