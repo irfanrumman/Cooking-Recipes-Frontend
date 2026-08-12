@@ -20,6 +20,7 @@ import {
   User,
   X,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -31,22 +32,24 @@ const navItems = [
   { label: "Recipes", href: "/recipes" },
   { label: "Premium", href: "/premium" },
   { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Contact", href: "/contact" },
-  
-  
+  { label: "Services", href: "/services", requiresAuth: true },
+  { label: "Contact", href: "/contact", requiresAuth: true },
 ];
 
 // User menu items configuration
 const userMenuItems = [
   { label: "Dashboard", icon: LayoutDashboard, action: "dashboard" },
   { label: "Profile", icon: User, action: "profile" },
-  // { label: "Settings", icon: Settings, action: "settings" },
+  { label: "Settings", icon: Settings, action: "settings" },
 ];
 
 export function Navbar({ user }: NavbarProps) {
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const visibleNavItems = navItems.filter(
+    (item) => !item.requiresAuth || user.success
+  );
 
   const handleUserMenuAction = async (action: string) => {
     if (action === "dashboard") {
@@ -74,7 +77,15 @@ export function Navbar({ user }: NavbarProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo */}
-          <Link href="/" className="shrink-0">
+          <Link href="/" className="flex shrink-0 items-center gap-2">
+            <Image
+              src="/logo.svg"
+              alt="Cooking Recipes logo"
+              width={32}
+              height={32}
+              className="size-7 sm:size-8"
+              priority
+            />
             <span className="text-lg sm:text-2xl font-bold text-primary">
               Cooking Recipes
             </span>
@@ -82,7 +93,7 @@ export function Navbar({ user }: NavbarProps) {
 
           {/* Nav Links - Desktop only */}
           <div className="hidden md:absolute md:left-1/2 md:transform md:-translate-x-1/2 md:flex md:items-center md:gap-8">
-            {navItems.map((item) => (
+            {visibleNavItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -184,7 +195,7 @@ export function Navbar({ user }: NavbarProps) {
       {isMobileMenuOpen && (
         <div className="sm:hidden border-t border-border bg-background">
           <div className="px-4 py-3 flex flex-col gap-1">
-            {navItems.map((item) => (
+            {visibleNavItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}

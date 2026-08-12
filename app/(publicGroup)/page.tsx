@@ -11,10 +11,10 @@ import {
   SoupIcon,
   StarIcon,
 } from "lucide-react";
-import { NewsSkeleton } from "./_components/news/NewsSkeleton";
-import { PublicNewsList } from "./_components/news/PublicNewsList";
 import HeroSearch from "./_components/home/HeroSearch";
 import FeatureTimeline from "./_components/home/FeatureTimeline";
+import { PublicRecipesList } from "./_components/recipes/PublicRecipesList";
+import { RecipesSkeleton } from "./_components/recipes/RecipesSkeleton";
 
 const heroAvatars = [
   "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?w=64&h=64&fit=crop&crop=faces&auto=format&q=60",
@@ -318,7 +318,7 @@ export default async function HomePage() {
           {galleryImages.map((image) => (
             <Link
               key={image.src}
-              href="/news"
+              href="/recipes"
               className={`group relative block overflow-hidden rounded-2xl ${image.span}`}
             >
               <Image
@@ -350,15 +350,15 @@ export default async function HomePage() {
             </p>
           </div>
           <Link
-            href="/news"
+            href="/recipes"
             className="mx-auto text-sm font-medium text-primary hover:underline sm:mx-0"
           >
             View all recipes &rarr;
           </Link>
         </div>
 
-        <Suspense fallback={<NewsSkeleton />}>
-          <PublicNewsList />
+        <Suspense fallback={<RecipesSkeleton />}>
+          <PublicRecipesList />
         </Suspense>
       </section>
 
